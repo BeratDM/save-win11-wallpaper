@@ -25,14 +25,20 @@ def remove_btemp_wp():
         os.remove(btemp_wp_path)
 
 wp_1 = "X:\\Files\\Wallpapers\\n1\\x\\"
-order = input(f"\n1.Copy to current directory\n2.Copy to '{wp_1}'\n")
+order = input(f"\n1.Copy to current directory\n2.Copy to '{wp_1}'\n3.Specify a path\n")
 match order:
     case "1":
         wp_folderpath = f"{os.getcwd()}\\"
     case "2":    
         wp_folderpath = wp_1
-
-main_path = r"C:\Users\berat\AppData\Roaming\Microsoft\Windows\Themes"
+    case "3":
+        wp_folderpath = f"{input("Enter Path: ")}\\"
+        if not os.path.exists(wp_folderpath):
+            input("path doesn't seem to exist.")
+            exit()
+            
+print(os.getenv('APPDATA'))
+main_path = f"{os.getenv('APPDATA')}\\Microsoft\\Windows\\Themes"
 
 btemp_name = "TranscodedWallpaper-BeratTemp"
 btemp_main_path = os.path.join(main_path, btemp_name)
